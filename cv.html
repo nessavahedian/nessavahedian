@@ -1,64 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV | Nessa Vahedian Khezerlou</title>
-  <style>
-    :root { --primary: #2c3e50; --accent: #b5651d; --background: #fdfbf7; --text: #333; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: var(--text); background-color: var(--background); margin: 0; padding: 0; }
-    nav { background: var(--primary); padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
-    nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-weight: 500; font-size: 1.1rem; }
-    nav a:hover { color: var(--accent); }
-    main { max-width: 800px; margin: 3rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    h1 { color: var(--primary); text-align: center; margin-bottom: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
-    .section-title { color: var(--primary); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; margin-top: 2rem; margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold; }
-    .cv-item { margin-bottom: 1.5rem; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV | Nessa Vahedian Khezerlou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page:     #f6efdd;   /* book page */
+    --page-2:   #f0e7cf;   /* slightly deeper page tone for footer */
+    --ink:      #2c2415;   /* aged ink */
+    --ink-soft: #6b5f47;
+    --gold:     #a97b2d;   /* foil */
+    --gold-lt:  #c99a4c;
+    --rule:     #ddcda3;
+
+    --oxblood:  #6d2027;
+    --forest:   #2e4a3b;
+    --navy:     #1e2c47;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body {
+    background: var(--page-2);
+    color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  a { color: inherit; }
+
+  .display { font-family: "Playfair Display", serif; }
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* ================= TOP BAR ================= */
+  .topbar {
+    background: var(--page);
+    padding: 1.3rem 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .topbar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: right;
+  }
+
+  .topbar-inner .ex-libris {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .topbar-inner .name {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+
+  @media (max-width: 560px) {
+    .topbar-inner { text-align: center; }
+  }
+
+  /* ================= TABLE OF CONTENTS NAV ================= */
+  .toc {
+    background: var(--page-2);
+    padding: 1.8rem 1.5rem 2rem;
+  }
+
+  .toc-inner {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .toc-heading {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+
+  .toc-list li a {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    color: var(--ink-soft);
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+  }
+
+  .toc-list li a .leader {
+    flex: 1;
+    border-bottom: 1px dotted var(--ink-soft);
+    margin: 0 0.5rem;
+    position: relative;
+    top: -0.3rem;
+  }
+
+  .toc-list li a .num {
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .toc-list li a:hover { color: var(--ink); }
+
+  .toc-list li a.current {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .toc-list li a.current .leader { border-bottom-color: var(--gold); }
+  .toc-list li a.current .num { color: var(--gold); }
+
+  /* ================= PAGE CONTENT ================= */
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--page);
+    padding: 3.4rem 2.4rem 1rem;
+  }
+
+  .folio {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  section + section { margin-top: 3.2rem; }
+
+  section h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0 0 1.2rem;
+    color: var(--ink);
+  }
+
+  .drop-cap::first-letter {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 0.78;
+    float: left;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--gold);
+  }
+
+  section p { margin: 0 0 1.15rem; }
+
+  .placeholder-note {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    background: rgba(169,123,45,0.1);
+    border: 1px dashed var(--gold);
+    padding: 0.35rem 0.65rem;
+    border-radius: 2px;
+  }
+
+  .colophon {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .colophon li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .colophon li:last-child { border-bottom: 1px solid var(--rule); }
+
+  .colophon .k {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .colophon a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .colophon a:hover { color: var(--gold); }
+
+  footer {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--page);
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    padding: 2.2rem 1.5rem 3rem;
+  }
+
+  /* ================= CV-SPECIFIC ENTRIES ================= */
+  .entry { margin-bottom: 2.2rem; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin: 0 0 0.15rem;
+    color: var(--ink);
+  }
+
+  .entry .meta {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.7rem;
+  }
+
+  .cv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cv-list li {
+    position: relative;
+    padding-left: 1.15em;
+    margin-bottom: 0.55rem;
+  }
+
+  .cv-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .subhead {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 1.6rem 0 0.9rem;
+  }
+
+  .subhead:first-of-type { margin-top: 0; }
+
+  @media (max-width: 560px) {
+    main { padding: 2.6rem 1.4rem 1rem; }
+    .colophon li, .colophon { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="cv.html">CV</a>
-    <a href="portfolio.html">Portfolio</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="ex-libris">Ex&nbsp;Libris</span>
+      <span class="name">Nessa Vahedian Khezerlou</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Site navigation">
+    <div class="toc-inner">
+      <div class="toc-heading">Contents</div>
+      <ul class="toc-list">
+        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+        <li><a class="current" href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
+        <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
+      </ul>
+    </div>
   </nav>
 
   <main>
-    <h1>Curriculum Vitae</h1>
-    
-    <div class="section-title">Education</div>
-    <div class="cv-item">
-      <strong>Master of Library and Information Science</strong><br>
-      University of Wisconsin–Madison
-    </div>
-    <div class="cv-item">
-      <strong>Bachelor of Liberal Studies</strong><br>
-      University of Iowa
-    </div>
-    <div class="cv-item">
-      <strong>Graduate Studies: Online Teaching & Instructional Technology</strong><br>
-      Northern Illinois University & University of Illinois Springfield
-    </div>
 
-    <div class="section-title">Professional Experience</div>
-    
-    <div class="cv-item">
-      <strong>Adjunct Reference and Instruction Librarian</strong><br>
-      Joliet Junior College & College of DuPage<br>
-      Design asynchronous tutorials using LibGuides and Niche Academy. Integrate lateral reading and SIFT methodologies into academic instruction. Develop and facilitate interactive library programming, including gamified events and career readiness workshops.
-    </div>
+    <section>
+      <div class="folio"><span>Chapter Two</span><span>Education</span></div>
+      <h2>Education</h2>
 
-    <div class="section-title">Publications & Presentations</div>
-    <div class="cv-item">
-      <strong>Two Truths and a Lie: Evaluating the Evidence</strong><br>
-      Co-authored chapter in the forthcoming ALA publication <em>The Practical Literacies Cookbook</em>.
-    </div>
-    <div class="cv-item">
-      <strong>Behind the Chatbot: A Flipped Approach to AI Literacy</strong><br>
-      Poster Presentation, Illinois Library Association Annual Conference (October 2026).
-    </div>
+      <div class="entry">
+        <h3>Master of Science in Education, Instructional Technology</h3>
+        <div class="meta">Northern Illinois University &middot; Expected 2028</div>
+      </div>
+
+      <div class="entry">
+        <h3>Master of Library and Information Science</h3>
+        <div class="meta">University of Wisconsin&ndash;Madison &middot; 2022 &middot; Cumulative GPA: 3.9</div>
+        <p>Relevant coursework: AI &amp; Machine Learning Ethics; Introduction to Information Architecture; Code and Power; Information Services Management; Information: Organization and Search; Research and Assessment; Information Ethics and Policy; Reading Interests of Adults; Metadata Standards and XML.</p>
+      </div>
+
+      <div class="entry">
+        <h3>Bachelor of Liberal Studies</h3>
+        <div class="meta">University of Iowa &middot; 2016</div>
+        <p>Relevant coursework: Grant Writing. Post-baccalaureate coursework: Detecting and Refuting False Information (SLIS 6411).</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Three</span><span>Experience</span></div>
+      <h2>Professional Experience</h2>
+
+      <div class="entry">
+        <h3>Adjunct Reference &amp; Instruction Librarian</h3>
+        <div class="meta">Joliet Junior College, Joliet, IL &middot; September 2023&ndash;Present</div>
+        <ul class="cv-list">
+          <li>Design and deliver 10&ndash;25 course-integrated information literacy sessions per semester for diverse populations (first-year, dual credit, ELL/multilingual, Honors, STEM, speech), contextualizing research within the history and economics of information systems and building instruction from students' existing cultural and community knowledge to affirm underrepresented learners.</li>
+          <li>Built a recurring three-session scaffolded English information literacy sequence from an initial faculty collaboration, and developed a dedicated dual credit curriculum serving 120+ high school students annually, aligned with college-level standards.</li>
+          <li>Developed an AI literacy curriculum, including a flipped lesson using self-designed prompt-based activities to teach LLM fundamentals (next-word prediction, vector-space word embeddings, attention mechanisms) and the "black box" problem; led critical discussions on AI ethics (data-scraping labor, training bias, RLHF trade-offs) and how AI's design toward "pleasing" users can foster misinformation.</li>
+          <li>Provide calm, supportive 1:1 coaching and research consultations, including for Honors capstone projects, helping students troubleshoot AI-related research failures such as fabricated or hallucinated citations.</li>
+          <li>Design accessible, visually engaging slide decks and instructional materials; build high-impact faculty partnerships that have generated a high volume of repeat course-integrated instruction requests.</li>
+          <li>Train and mentor a new adjunct librarian through peer observation and shared materials; coordinate scheduling across shared course sections; delivered in-person training to 40+ high school instructors across Transitional English/Dual Credit partner institutions, supported by a dedicated LibGuide centralizing curriculum resources.</li>
+          <li>Create high-impact asynchronous instructional content via Niche Academy and LibGuides, including one tutorial that became the library's second-highest-used learning resource overall.</li>
+          <li>Elected Union Representative following comparative contract research across five peer institutions; authored advocacy documentation and presented to leadership, securing historic union representation.</li>
+          <li>Led a data-driven redesign of the library website and LibGuides, restructuring information architecture across 10+ pages and establishing ongoing content-governance and WCAG accessibility review workflows.</li>
+          <li>Provide up to 25 hours/week of reference desk support and 5&ndash;10 hours/week of chat reference using advanced database searching and structured reference interviews for complex, interdisciplinary needs; collaborate with STEM faculty (Geology, Geography, Psychology) on discipline-specific instruction.</li>
+          <li>Plan and lead large-scale outreach programming (Banned Books Week, National Library Week, pop-up library, Career Caf&eacute;) with faculty, high school instructors, and campus offices; assess programming via exit tickets, achieving perfect 5/5 ratings for Banned Books Week.</li>
+          <li>Co-wrote and helped direct a library promotional video and cross-platform marketing materials; manage a $2,000 semesterly book budget for acquisitions and weeding in the Philosophy &amp; Psychology (100s) collection.</li>
+          <li>Serve as technical administrator for hybrid workshops and large virtual meetings (Zoom, Microsoft Teams); support the collection's transition from Dewey Decimal to Library of Congress classification; compile and analyze usage data via Alma and LibInsight.</li>
+          <li>Conducted an institutional research project directly supporting the Office of the College President and assisted with faculty archival research.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Adjunct Librarian</h3>
+        <div class="meta">College of DuPage, Glen Ellyn, IL &middot; November 2025&ndash;Present</div>
+        <ul class="cv-list">
+          <li>Provide reference support and individualized research consultations, guiding undergraduates through iterative search strategies and advanced discovery layers; deliver active-learning information literacy instruction for composition courses.</li>
+          <li>Designed and launched "Summer Fling Book Matchmaking," a gamified exhibition teaching Library of Congress call numbers while lowering library anxiety and promoting collection discovery; support outreach programming including National Library Week.</li>
+          <li>Serve as invited judge for the annual campus symposium, evaluating student research using criteria-based rubrics; collaborate with faculty to adopt and create Open Educational Resources for affordable learning.</li>
+          <li>Provide research support across disciplines, including STEM, through multiple weekly consultations across in-person and virtual modalities.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Contributor</h3>
+        <div class="meta">Outlier (Remote) &middot; March 2024&ndash;Present</div>
+        <ul class="cv-list">
+          <li>Evaluate and optimize Large Language Model outputs for factual accuracy, reasoning quality, and structural integrity as a human-in-the-loop subject matter expert, applying multi-tiered rubrics that simulate reinforcement learning constraints.</li>
+          <li>Author feedback reports identifying model errors, logical fallacies, algorithmic bias, and hallucinated or fabricated citations; fact-check AI-generated responses using lateral reading and craft targeted prompts to reveal model limitations and failure modes; document evaluation workflows asynchronously to support consistency across distributed teams.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Librarian</h3>
+        <div class="meta">Waubonsee Community College, Sugar Grove, IL &middot; February 2023&ndash;September 2023</div>
+        <ul class="cv-list">
+          <li>Delivered information literacy instruction using active-learning strategies for diverse student groups; conducted multi-disciplinary research consultations through structured reference interviews.</li>
+          <li>Supported large-scale instructional programming, including the library component of New Student Orientation for cohorts of 150+ incoming learners; analyzed usage data and managed physical stacks, including weeding and updates to the collection development policy.</li>
+          <li>Created resource guides and custom digital learning objects to streamline project intake; designed a "Dog Days of Summer" interdisciplinary display linking astronomy and climate change; partnered with the Tutoring and Learning department on a student study night.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Information Services Librarian</h3>
+        <div class="meta">Aurora University, Aurora, IL &middot; August 2022&ndash;February 2023</div>
+        <ul class="cv-list">
+          <li>Conducted individualized research consultations for graduate and doctoral students in nursing, social work, and education, using structured reference interviews and complex literature searches across CINAHL, ERIC, and APA PsycArticles.</li>
+          <li>Supervised, trained, and mentored student employees; provided cross-disciplinary reference and technical troubleshooting at the primary information desk; created and updated LibGuides, including specialized guides for history and artificial intelligence; co-developed course-integrated information literacy workshops; curated monthly book displays highlighting diverse and inclusive voices.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Graduate Practicum Student</h3>
+        <div class="meta">Northern Illinois University, DeKalb, IL &middot; April 2022&ndash;August 2022</div>
+        <ul class="cv-list">
+          <li>Reviewed existing online library tutorials to identify information architecture gaps; wrote, scripted, and recorded multi-modal video tutorials to strengthen asynchronous and remote learning support.</li>
+          <li>Assisted in planning a collection diversity audit using data visualization tools; evaluated physical reference collections for currency and relevance; developed a specialized LibGuide connecting students with disabilities to campus support systems.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Research Assistant, Mentorship Program</h3>
+        <div class="meta">University of Iowa O'Brien Eye Library, Iowa City, IA &middot; April 2019&ndash;August 2019</div>
+        <ul class="cv-list">
+          <li>Conducted structured reference interviews to clarify complex, interdisciplinary research needs for faculty and graduate students in clinical and biomedical domains; developed targeted search strategies across PubMed, MEDLINE, and Scopus.</li>
+          <li>Completed 5&ndash;6 literature reviews, synthesizing findings into publication-ready annotated bibliographies using EndNote; delivered research support and electronic resource troubleshooting under strict deadlines for faculty pursuing peer-reviewed publication and grant submissions.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Library Assistant II <span style="font-style: italic; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft);">(promoted from Page and Library Assistant I)</span></h3>
+        <div class="meta">North Liberty Community Library, North Liberty, IA &middot; August 2016&ndash;April 2019</div>
+        <ul class="cv-list">
+          <li>Provided technology troubleshooting, digital literacy training, and cross-disciplinary reference assistance; managed serials acquisitions, copy cataloging, and collection maintenance for magazine, adult nonfiction, and multimedia collections.</li>
+          <li>Served as shift supervisor for evening and weekend operations, coordinating staff workflows and de-escalating sensitive patron interactions; planned and evaluated community programming, including an Emerging Adults book club promoting collection discovery among underrepresented young adults.</li>
+          <li>Partnered with United Action for Youth to design teen engagement training, equipping staff with culturally responsive service frameworks for diverse youth populations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Four</span><span>Scholarly Work</span></div>
+      <h2>Publications &amp; Presentations</h2>
+
+      <div class="subhead">Publications</div>
+      <ul class="cv-list">
+        <li>Chellino, Amy, and Nessa Vahedian Khezerlou. "Two Truths and a Lie: Evaluating the Evidence." In <em>The Practical Literacies Cookbook</em>, edited by Haley Lott. Chicago: American Library Association, forthcoming.</li>
+      </ul>
+
+      <div class="subhead">Presentations</div>
+      <ul class="cv-list">
+        <li>Vahedian Khezerlou, Nessa. "Behind the Chatbot: A Flipped Approach to AI Literacy." Poster to be presented at the Illinois Library Association Annual Conference, October 8, 2026.</li>
+        <li>Vahedian Khezerlou, Nessa. "Behind the Chatbot: An AI Literacy Flipped Class." Poster presented at the Association of College and Research Libraries (ACRL) Distance and Online Learning Section (DOLS) Poster Session, Virtual, June 15&ndash;19, 2026.</li>
+        <li>Vahedian Khezerlou, Nessa, and Jessica Clanton. "This Presentation is Banned: Resistance-Themed Engagement with the ACRL Information Literacy Framework for Banned Books Week." Presentation at the Illinois Information Literacy Summit, Glen Ellyn, IL, May 1, 2026.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Five</span><span>Service</span></div>
+      <h2>Service &amp; Affiliations</h2>
+
+      <div class="subhead">American Library Association &middot; 2022&ndash;Present</div>
+      <ul class="cv-list">
+        <li>Chair, Membership, Promotion, Diversity, and Recruitment Committee (upcoming 2027).</li>
+        <li>Member, Library Instruction Round Table (LIRT) Communications Committee (2025&ndash;2026) &mdash; edited professional resource pages and collaborated across committees on a comprehensive website overhaul.</li>
+        <li>Member, New Members Round Table (NMRT) Endnotes Committee (2023&ndash;2025) &mdash; peer-reviewed professional publication submissions for quality and adherence to guidelines.</li>
+        <li>Member, NMRT Annual Conference Local Information Committee (2022) &mdash; authored local Chicago navigational guides and organized/led an instructional Grant Park walking tour for attendees.</li>
+        <li>Member, ACRL Academic Library Services to International Students Interest Group (2022&ndash;Present).</li>
+      </ul>
+
+      <div class="subhead">Illinois Library Association &middot; 2022&ndash;Present</div>
+      <ul class="cv-list">
+        <li>Committee Member, Awards Committee (2023&ndash;2026) &mdash; evaluate award nominations against rigorous rubric criteria and participate in committee consensus-building to select honorees.</li>
+      </ul>
+
+      <div class="subhead">Joliet Junior College</div>
+      <ul class="cv-list">
+        <li>Adjunct Union Representative (2024&ndash;Present) &mdash; represent adjunct faculty interests in institutional discussions, policy evaluations, and labor advocacy initiatives.</li>
+        <li>Member, LGBTQIA+ Employee Resource Group (2023&ndash;Present) &mdash; contribute to campus equity and inclusion programming; spearheaded a complete redesign and migration of the group's SharePoint site.</li>
+      </ul>
+
+      <div class="subhead">College of DuPage</div>
+      <ul class="cv-list">
+        <li>Member, Community Engagement Committee (2025&ndash;Present).</li>
+        <li>Member, AI Literacy Committee (2025&ndash;Present).</li>
+      </ul>
+
+      <div class="subhead">Library Journal &middot; 2023&ndash;Present</div>
+      <ul class="cv-list">
+        <li>Audiobook Reviewer &mdash; provide critical media evaluations and published reviews for current audiobook releases.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Six</span><span>Technology &amp; Languages</span></div>
+      <h2>Technology &amp; Languages</h2>
+
+      <div class="subhead">Technology</div>
+      <ul class="cv-list">
+        <li>Specialized instructional design and library-platform tools: Springshare Suite (LibGuides, LibApps, LibInsight, LibWizard); Alma/Ex Libris; Polaris; Articulate Storyline/Rise; H5P; Camtasia; Kaltura; OpenShot; HTML/CSS/XML; QGIS (foundational).</li>
+      </ul>
+
+      <div class="subhead">Languages</div>
+      <ul class="cv-list">
+        <li>Spanish &mdash; working/reading proficiency.</li>
+      </ul>
+    </section>
+
   </main>
+
+  <footer>Printed for Nessa Vahedian Khezerlou &middot; MMXXVI</footer>
 
 </body>
 </html>

@@ -1,52 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Nessa Vahedian Khezerlou</title>
-  <style>
-    :root { --primary: #2c3e50; --accent: #b5651d; --background: #fdfbf7; --text: #333; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: var(--text); background-color: var(--background); margin: 0; padding: 0; }
-    nav { background: var(--primary); padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
-    nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-weight: 500; font-size: 1.1rem; }
-    nav a:hover { color: var(--accent); }
-    main { max-width: 900px; margin: 3rem auto; padding: 2rem; }
-    h1 { color: var(--primary); text-align: center; margin-bottom: 3rem; }
-    .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-    .project-card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
-    .project-card h2 { color: var(--primary); margin-top: 0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Nessa Vahedian Khezerlou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page:     #f6efdd;   /* book page */
+    --page-2:   #f0e7cf;   /* slightly deeper page tone for footer */
+    --ink:      #2c2415;   /* aged ink */
+    --ink-soft: #6b5f47;
+    --gold:     #a97b2d;   /* foil */
+    --gold-lt:  #c99a4c;
+    --rule:     #ddcda3;
+
+    --oxblood:  #6d2027;
+    --forest:   #2e4a3b;
+    --navy:     #1e2c47;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body {
+    background: var(--page-2);
+    color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  a { color: inherit; }
+
+  .display { font-family: "Playfair Display", serif; }
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* ================= TOP BAR ================= */
+  .topbar {
+    background: var(--page);
+    padding: 1.3rem 1.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .topbar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: right;
+  }
+
+  .topbar-inner .ex-libris {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .topbar-inner .name {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+
+  @media (max-width: 560px) {
+    .topbar-inner { text-align: center; }
+  }
+
+  /* ================= TABLE OF CONTENTS NAV ================= */
+  .toc {
+    background: var(--page-2);
+    padding: 1.8rem 1.5rem 2rem;
+  }
+
+  .toc-inner {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .toc-heading {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+
+  .toc-list li a {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    color: var(--ink-soft);
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+  }
+
+  .toc-list li a .leader {
+    flex: 1;
+    border-bottom: 1px dotted var(--ink-soft);
+    margin: 0 0.5rem;
+    position: relative;
+    top: -0.3rem;
+  }
+
+  .toc-list li a .num {
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .toc-list li a:hover { color: var(--ink); }
+
+  .toc-list li a.current {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .toc-list li a.current .leader { border-bottom-color: var(--gold); }
+  .toc-list li a.current .num { color: var(--gold); }
+
+  /* ================= PAGE CONTENT ================= */
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--page);
+    padding: 3.4rem 2.4rem 1rem;
+  }
+
+  .folio {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  section + section { margin-top: 3.2rem; }
+
+  section h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0 0 1.2rem;
+    color: var(--ink);
+  }
+
+  .drop-cap::first-letter {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 0.78;
+    float: left;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--gold);
+  }
+
+  section p { margin: 0 0 1.15rem; }
+
+  .placeholder-note {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    background: rgba(169,123,45,0.1);
+    border: 1px dashed var(--gold);
+    padding: 0.35rem 0.65rem;
+    border-radius: 2px;
+  }
+
+  .colophon {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .colophon li {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .colophon li:last-child { border-bottom: 1px solid var(--rule); }
+
+  .colophon .k {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .colophon a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .colophon a:hover { color: var(--gold); }
+
+  footer {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--page);
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    padding: 2.2rem 1.5rem 3rem;
+  }
+
+  /* ================= PORTFOLIO ENTRIES ================= */
+  .entry { margin-bottom: 2.2rem; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin: 0 0 0.15rem;
+    color: var(--ink);
+  }
+
+  .entry .meta {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.7rem;
+  }
+
+  .subhead {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 1.6rem 0 0.9rem;
+  }
+
+  .subhead:first-of-type { margin-top: 0; }
+
+  .item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .item {
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .item-list .item:last-child { border-bottom: 1px solid var(--rule); }
+
+  .item h4 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 0.3rem;
+    color: var(--ink);
+  }
+
+  .item .desc {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.55rem;
+  }
+
+  .item .link a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.1rem;
+  }
+
+  .item .link a:hover { color: var(--gold); }
+
+  @media (max-width: 560px) {
+    main { padding: 2.6rem 1.4rem 1rem; }
+    .colophon li, .colophon { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="cv.html">CV</a>
-    <a href="portfolio.html">Portfolio</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="ex-libris">Ex&nbsp;Libris</span>
+      <span class="name">Nessa Vahedian Khezerlou</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Site navigation">
+    <div class="toc-inner">
+      <div class="toc-heading">Contents</div>
+      <ul class="toc-list">
+        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+        <li><a href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
+        <li><a class="current" href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
+      </ul>
+    </div>
   </nav>
 
   <main>
-    <h1>Selected Instructional Projects</h1>
-    
-    <div class="portfolio-grid">
-      <div class="project-card">
-        <h2>Behind the Chatbot: AI Literacy Module</h2>
-        <p>An interactive, flipped-class approach utilizing an AI teaching assistant to guide students through the mechanics of large language models, including tokenization and vector embeddings. This project demonstrates ethical AI application and technical demystification for community college students.</p>
-      </div>
 
-      <div class="project-card">
-        <h2>Summer Fling Book Matchmaker</h2>
-        <p>Designed an interactive library display utilizing Library of Congress classification matching mechanics to increase patron engagement. Supported by targeted signage and a social media campaign.</p>
-      </div>
+    <section>
+      <div class="folio"><span>Chapter One</span><span>Overview</span></div>
+      <h2>Portfolio</h2>
+      <p class="drop-cap">A selection of instructional materials, guides, and assessments developed for information literacy and AI literacy instruction across academic and community college settings. Organized below by format &mdash; browse a category, or follow a link to view the full resource.</p>
+    </section>
 
-      <div class="project-card">
-        <h2>Banned Books Week Programming</h2>
-        <p>Executed comprehensive thematic programming featuring clandestine book inserts, blackout poetry stations, and film screenings to highlight intellectual freedom.</p>
-      </div>
-    </div>
+    <section>
+      <div class="folio"><span>Chapter Two</span><span>Tutorials</span></div>
+      <h2>Tutorials</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>APA Style &amp; References</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Dual Credit</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Evaluating Sources</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Three</span><span>Guides</span></div>
+      <h2>Guides</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>Open Access</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Dual Credit</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Four</span><span>Activities</span></div>
+      <h2>Activities</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>That's What She Said</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Two Truths &amp; A Lie</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Flipped Classroom AI Prompt</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Five</span><span>Videos</span></div>
+      <h2>Videos</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>Peer Review</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>What Can You Do At the JJC Library?</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Six</span><span>Slides</span></div>
+      <h2>Slides</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>Lateral Reading</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>AI Literacy</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>This Presentation is Banned</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="folio"><span>Chapter Seven</span><span>Worksheets</span></div>
+      <h2>Worksheets</h2>
+      <ul class="item-list">
+        <li class="item">
+          <h4>3-Session Eng 101</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+        <li class="item">
+          <h4>Opposing Viewpoints</h4>
+          <p class="desc"><span class="placeholder-note">Add a one-line description of this resource.</span></p>
+          <p class="link"><a href="#">View Materials &rarr;</a></p>
+        </li>
+      </ul>
+    </section>
+
   </main>
 
-  <!-- Voiceflow widget will be pasted below this line later -->
+  <footer>Printed for Nessa Vahedian Khezerlou &middot; MMXXVI</footer>
 
 </body>
 </html>

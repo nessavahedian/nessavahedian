@@ -5,52 +5,183 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nessa Vahedian Khezerlou | Academic Librarian</title>
   <style>
-    :root { --primary: #2c3e50; --accent: #b5651d; --background: #fdfbf7; --text: #333; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; color: var(--text); background-color: var(--background); margin: 0; padding: 0; }
-    nav { background: var(--primary); padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
-    nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-weight: 500; font-size: 1.1rem; }
-    nav a:hover { color: var(--accent); }
-    header { padding: 4rem 2rem 2rem; text-align: center; }
-    .profile-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); margin-bottom: 1.5rem; }
-    h1 { margin: 0 0 0.5rem 0; font-size: 2.5rem; color: var(--primary); }
-    h2 { font-size: 1.2rem; color: var(--text); font-weight: 400; margin-top: 0; }
-    .contact-links { margin: 1.5rem 0; }
-    .contact-links a { color: var(--primary); text-decoration: none; margin: 0 10px; font-weight: bold; border-bottom: 2px solid transparent; }
-    .contact-links a:hover { border-bottom: 2px solid var(--accent); color: var(--accent); }
-    main { max-width: 800px; margin: 0 auto 3rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    footer { text-align: center; padding: 2rem; color: #666; font-size: 0.9rem; }
+    :root {
+      /* This green matches the tones in your chicago_map.jpg */
+      --theme-green: #355347; 
+      --bg-color: #fdfdfd;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--theme-green);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+    }
+    
+    /* Banner Section */
+    .banner {
+      background-image: url('chicago_map.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    
+    .banner img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top; /* Prevents the top of the head from being cropped */
+      border: 4px solid white;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .banner h1 {
+      font-size: 3.5rem;
+      margin: 0 0 1rem 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      line-height: 1.1;
+    }
+    
+    .banner .quote {
+      font-size: 1.1rem;
+      max-width: 700px;
+      font-style: italic;
+      font-weight: 300;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .banner .quote-author {
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    
+    .subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* Centered Button Navigation */
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+      background-color: var(--theme-green);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    
+    .nav-links a:hover {
+      background-color: #274036;
+      transform: translateY(-2px);
+    }
+
+    /* Text Sections */
+    h2 {
+      border-bottom: 2px solid var(--theme-green);
+      padding-bottom: 0.5rem;
+      margin-top: 2.5rem;
+      font-size: 1.8rem;
+    }
+    
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    .contact-info p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    
+    .contact-info a {
+      color: var(--theme-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .banner h1 {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      .nav-links a {
+        width: 80%;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="cv.html">CV</a>
-    <a href="portfolio.html">Portfolio</a>
-  </nav>
-
-  <header>
-    <img src="nessa_headshot.jpg" alt="Nessa Vahedian Khezerlou" class="profile-img">
+  <div class="banner">
+    <img src="nessa_headshot.jpg" alt="Nessa Vahedian Khezerlou">
     <h1>Nessa Vahedian Khezerlou</h1>
-    <h2>Academic Librarian - Information Literacy, AI Literacy, Instructional Technology, Active Learning (for now)</h2>
-    
-    <div class="contact-links">
-      <a href="mailto:nessavahedian@gmail.com">Email</a> • 
-      <a href="tel:5158368015">(515) 836-8015</a> • 
-      <a href="https://www.linkedin.com/in/nessavahedian/" target="_blank">LinkedIn</a> • 
-      <a href="portfolio.html">View Portfolio</a>
+    <div class="quote">
+      "To ask why we need libraries at all, when there is so much information available elsewhere, is about as sensible as asking if roadmaps are necessary now that there are so very many roads."
+      <span class="quote-author">– Jon Bing</span>
     </div>
-  </header>
+  </div>
 
   <main>
+    <div class="subtitle">Academic Librarian - Information Literacy, AI Literacy, Instructional Technology, Active Learning</div>
+    
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="portfolio.html">Portfolio</a>
+    </div>
+
+    <h2>About Me</h2>
     <p>As a librarian and educator, Nessa Vahedian uses a blend of creative pedagogy and professional competence to spark a genuine sense of curiosity in her students and patrons. She makes it her mission to bring the library to the community whenever possible, championing its role as an essential pillar of democracy and a cornerstone for intellectual freedom.</p>
     
     <p>Always looking for opportunities to bring a little humor to her work, she relishes the chance to sneak a pun or Dad joke into a lecture. Outside the stacks, Nessa is a Midwest traveler, a proud Maine Coon mom, and a regular competitor on the Wise Quacks trivia team. To see her work in practice, feel free to explore her teaching materials and professional portfolio.</p>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 Nessa Vahedian Khezerlou</p>
-  </footer>
+    <h2>Contact Info</h2>
+    <div class="contact-info">
+      <p><strong>Phone:</strong> <a href="tel:5158368015">(515) 836-8015</a></p>
+      <p><strong>Email:</strong> <a href="mailto:nessavahedian@gmail.com">nessavahedian@gmail.com</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nessavahedian/" target="_blank">https://www.linkedin.com/in/nessavahedian/</a></p>
+    </div>
+  </main>
 
 </body>
 </html>

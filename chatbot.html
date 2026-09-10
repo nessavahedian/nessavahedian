@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behind the Chatbot | Nessa Vahedian Khezerlou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page:     #f6efdd;   /* book page */
+    --page-2:   #f0e7cf;   /* slightly deeper page tone for footer */
+    --ink:      #2c2415;   /* aged ink */
+    --ink-soft: #6b5f47;
+    --gold:     #a97b2d;   /* foil */
+    --gold-lt:  #c99a4c;
+    --rule:     #ddcda3;
+
+    --oxblood:  #6d2027;
+    --forest:   #2e4a3b;
+    --navy:     #1e2c47;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body {
+    background: var(--page-2);
+    color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  a { color: inherit; }
+
+  .display { font-family: "Playfair Display", serif; }
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* ================= TITLEPAGE (simplified, interior pages) ================= */
+  .titlepage {
+    background: var(--page);
+    padding: 1.6rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .titlepage-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 3px double var(--gold);
+    border-bottom: 3px double var(--gold);
+    padding: 1rem 0.5rem;
+  }
+
+  .titlepage-inner .ex-libris {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .titlepage-inner .name {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--ink);
+  }
+
+  /* ================= TABLE OF CONTENTS NAV ================= */
+  .toc {
+    background: var(--page-2);
+    padding: 1.8rem 1.5rem 2rem;
+  }
+
+  .toc-inner {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .toc-heading {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+
+  .toc-list li a {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    color: var(--ink-soft);
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+  }
+
+  .toc-list li a .leader {
+    flex: 1;
+    border-bottom: 1px dotted var(--ink-soft);
+    margin: 0 0.5rem;
+    position: relative;
+    top: -0.3rem;
+  }
+
+  .toc-list li a .num {
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .toc-list li a:hover { color: var(--ink); }
+
+  .toc-list li a.current {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .toc-list li a.current .leader { border-bottom-color: var(--gold); }
+  .toc-list li a.current .num { color: var(--gold); }
+
+  /* ================= PAGE CONTENT ================= */
+  main {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--page);
+    padding: 3.4rem 2.4rem 1rem;
+  }
+
+  .folio {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  section + section { margin-top: 3.2rem; }
+
+  section h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0 0 1.2rem;
+    color: var(--ink);
+  }
+
+  .drop-cap::first-letter {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 0.78;
+    float: left;
+    padding: 0.06em 0.09em 0 0;
+    color: var(--gold);
+  }
+
+  section p { margin: 0 0 1.15rem; }
+
+  /* ================= CHATBOT FRAME ================= */
+  .bot-frame {
+    border: 3px double var(--gold);
+    padding: 0.9rem;
+    margin: 0 0 2rem;
+    background: var(--page-2);
+  }
+
+  .bot-frame-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  footer {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--page);
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    padding: 2.2rem 1.5rem 3rem;
+  }
+
+  @media (max-width: 560px) {
+    main { padding: 2.6rem 1.4rem 1rem; }
+    .titlepage-inner { flex-direction: column; text-align: center; gap: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="titlepage">
+    <div class="titlepage-inner">
+      <div class="ex-libris">Ex&nbsp;Libris</div>
+      <div class="name display">Nessa Vahedian Khezerlou</div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Site navigation">
+    <div class="toc-inner">
+      <div class="toc-heading">Contents</div>
+      <ul class="toc-list">
+        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+        <li><a href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
+        <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
+        <li><a class="current" href="chadbaht.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="folio"><span>Chapter Four</span><span>Behind the Chatbot</span></div>
+      <h2>Behind the Chatbot</h2>
+      <p class="drop-cap">Say hello to Chad Baht — a friendly chatbot who explains, in his own words, how he actually works. Instead of reading about tokenization, training data, or hallucination secondhand, students get to ask Chad Baht directly and watch him walk through his own inner workings step by step. He's the centerpiece of an AI literacy activity built for community college students with no technical background.</p>
+      <p>For more on the pedagogy behind Chad Baht — and the rest of the project — visit the <a href="portfolio.html">Portfolio</a> page.</p>
+    </section>
+
+    <section>
+      <div class="bot-frame">
+        <div class="bot-frame-label">Chad&nbsp;Baht</div>
+        <script type="module">
+          import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js';
+
+          Typebot.initStandard({ typebot: "chad-baht-4cublql" });
+        </script>
+
+        <typebot-standard style="width: 100%; height: 600px;"></typebot-standard>
+      </div>
+    </section>
+  </main>
+
+  <footer>Printed for Nessa Vahedian Khezerlou · MMXXVI</footer>
+
+</body>
+</html>

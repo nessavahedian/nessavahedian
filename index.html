@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Primary Title & Description -->
   <title>Nessa Vahedian | Professional Portfolio & Projects</title>
   <meta name="description" content="Professional portfolio, instructional materials, and projects by Nessa Vahedian." />
@@ -20,28 +21,24 @@
   <meta name="twitter:url" content="https://nessavahedian.net/" />
   <meta name="twitter:title" content="Nessa Vahedian | Professional Portfolio" />
   <meta name="twitter:description" content="Explore portfolio projects, instructional design work, and research by Nessa Vahedian." />
-  <meta name="twitter:image" content="https://nessavahedian.net/assets/preview-image.png" />  
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="twitter:image" content="https://nessavahedian.net/assets/preview-image.png" />
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nessa Vahedian",
-  "url": "https://nessavahedian.net",
-  "sameAs": [
-    "https://github.com/your-github-username",
-    "https://www.linkedin.com/in/your-linkedin-profile"
-  ],
-  "jobTitle": "Librarian & Educator",
-  "knowsAbout": ["Information Literacy", "Instructional Design", "AI Literacy"]
-}
-</script>
-  
-  <title>Nessa Vahedian Khezerlou | Academic Librarian</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nessa Vahedian",
+    "url": "https://nessavahedian.net",
+    "sameAs": [
+      "https://www.linkedin.com/in/nessavahedian/"
+    ],
+    "jobTitle": "Librarian & Educator",
+    "knowsAbout": ["Information Literacy", "Instructional Design", "AI Literacy"]
+  }
+  </script>
+
   <script data-goatcounter="https://nessavahedian.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+          async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -72,6 +69,11 @@
   }
 
   a { color: inherit; }
+
+  a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
 
   .display { font-family: "Playfair Display", serif; }
   .mono {
@@ -106,24 +108,28 @@
     gap: 2.4rem;
   }
 
+  /* oval portrait frame: a double gold rule, echoing the cartouche border */
   .banner-photo {
     flex-shrink: 0;
-    width: 148px;
-    height: 190px;
-    border: 3px solid var(--gold);
-    padding: 5px;
+    width: 152px;
+    height: 194px;
+    border: 3px double var(--gold);
+    border-radius: 50%;
+    padding: 6px;
     position: relative;
+    background: var(--page);
   }
 
   .banner-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center 15%;
     display: block;
+    border-radius: 50%;
   }
 
-  .banner-text .ex-libris {
+  .banner-text .motto {
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.68rem;
     letter-spacing: 0.28em;
@@ -193,6 +199,7 @@
   .toc-list li a {
     display: flex;
     align-items: baseline;
+    position: relative;
     text-decoration: none;
     padding: 0.5rem 0;
     color: var(--ink-soft);
@@ -215,9 +222,22 @@
 
   .toc-list li a:hover { color: var(--ink); }
 
+  /* current page: title steps in from the margin and a gold star marks the spot */
   .toc-list li a.current {
     color: var(--ink);
     font-weight: 700;
+    padding-left: 1.7rem;
+  }
+
+  .toc-list li a.current::before {
+    content: "\2726";
+    position: absolute;
+    left: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gold);
   }
 
   .toc-list li a.current .leader { border-bottom-color: var(--gold); }
@@ -304,6 +324,7 @@
   .colophon a {
     text-decoration: none;
     border-bottom: 1px solid var(--gold);
+    overflow-wrap: anywhere;
   }
 
   .colophon a:hover { color: var(--gold); }
@@ -324,11 +345,12 @@
     .titlepage { padding: 2rem 0.9rem; }
     .cartouche { padding: 2rem 1.2rem 1.6rem; }
     .banner { flex-direction: column; text-align: center; }
-    .banner-photo { width: 128px; height: 164px; }
+    .banner-photo { width: 132px; height: 170px; }
   }
 
   @media (max-width: 560px) {
     main { padding: 2.6rem 1.4rem 1rem; }
+    .colophon li { grid-template-columns: 80px 1fr; gap: 0.6rem; }
   }
 </style>
 </head>
@@ -338,10 +360,10 @@
     <div class="cartouche">
       <div class="banner">
         <div class="banner-photo">
-          <img src="nessa_headshot.png" alt="Nessa Vahedian Khezerlou">
+          <img src="nessa_headshot.png" alt="Portrait of Nessa Vahedian Khezerlou">
         </div>
         <div class="banner-text">
-          <div class="ex-libris">Ex&nbsp;Libris</div>
+          <div class="motto" lang="la" title="Dare to know">Sapere aude</div>
           <h1 class="display">Nessa Vahedian Khezerlou</h1>
           <div class="role">Academic Librarian, Chicagoland</div>
         </div>
@@ -356,8 +378,8 @@
   <nav class="toc" aria-label="Site navigation">
     <div class="toc-inner">
       <div class="toc-heading">Contents</div>
-    <ul class="toc-list">
-        <li><a class="current" href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+      <ul class="toc-list">
+        <li><a class="current" href="index.html" aria-current="page">Home<span class="leader"></span><span class="num">i</span></a></li>
         <li><a href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
         <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
         <li><a href="chatbot.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
@@ -365,7 +387,7 @@
     </div>
   </nav>
 
- <main>
+  <main>
     <section>
       <div class="folio"><span>Chapter One</span><span>About</span></div>
       <h2>About</h2>

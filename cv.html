@@ -35,6 +35,11 @@
 
   a { color: inherit; }
 
+  a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
   .display { font-family: "Playfair Display", serif; }
   .mono {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -54,7 +59,7 @@
     text-align: right;
   }
 
-  .topbar-inner .ex-libris {
+  .topbar-inner .motto {
     display: block;
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.62rem;
@@ -101,6 +106,7 @@
   .toc-list li a {
     display: flex;
     align-items: baseline;
+    position: relative;
     text-decoration: none;
     padding: 0.5rem 0;
     color: var(--ink-soft);
@@ -123,9 +129,22 @@
 
   .toc-list li a:hover { color: var(--ink); }
 
+  /* current page: title steps in from the margin and a gold star marks the spot */
   .toc-list li a.current {
     color: var(--ink);
     font-weight: 700;
+    padding-left: 1.7rem;
+  }
+
+  .toc-list li a.current::before {
+    content: "\2726";
+    position: absolute;
+    left: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gold);
   }
 
   .toc-list li a.current .leader { border-bottom-color: var(--gold); }
@@ -151,7 +170,12 @@
     margin-bottom: 0.6rem;
   }
 
-  section + section { margin-top: 3.2rem; }
+  /* with a single chapter heading, sections are separated by a plain rule */
+  section + section {
+    margin-top: 3rem;
+    padding-top: 2.6rem;
+    border-top: 1px solid var(--rule);
+  }
 
   section h2 {
     font-family: "Playfair Display", serif;
@@ -212,6 +236,7 @@
   .colophon a {
     text-decoration: none;
     border-bottom: 1px solid var(--gold);
+    overflow-wrap: anywhere;
   }
 
   .colophon a:hover { color: var(--gold); }
@@ -238,6 +263,13 @@
     font-size: 1.18rem;
     margin: 0 0 0.15rem;
     color: var(--ink);
+  }
+
+  .entry h3 .aside {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
   }
 
   .entry .meta {
@@ -279,7 +311,7 @@
 
   @media (max-width: 560px) {
     main { padding: 2.6rem 1.4rem 1rem; }
-    .colophon li, .colophon { grid-template-columns: 1fr; }
+    .colophon li { grid-template-columns: 80px 1fr; gap: 0.6rem; }
   }
 </style>
 </head>
@@ -287,7 +319,7 @@
 
   <header class="topbar">
     <div class="topbar-inner">
-      <span class="ex-libris">Ex&nbsp;Libris</span>
+      <span class="motto" lang="la" title="Dare to know">Sapere aude</span>
       <span class="name">Nessa Vahedian Khezerlou</span>
     </div>
   </header>
@@ -295,9 +327,9 @@
   <nav class="toc" aria-label="Site navigation">
     <div class="toc-inner">
       <div class="toc-heading">Contents</div>
-    <ul class="toc-list">
-        <li><a class="current" href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
-        <li><a href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
+      <ul class="toc-list">
+        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+        <li><a class="current" href="cv.html" aria-current="page">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
         <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
         <li><a href="chatbot.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
       </ul>
@@ -307,7 +339,7 @@
   <main>
 
     <section>
-      <div class="folio"><span>Chapter Two</span><span>Education</span></div>
+      <div class="folio"><span>Chapter Two</span><span>Curriculum Vitae</span></div>
       <h2>Education</h2>
 
       <div class="entry">
@@ -329,7 +361,6 @@
     </section>
 
     <section>
-      <div class="folio"><span>Chapter Three</span><span>Experience</span></div>
       <h2>Professional Experience</h2>
 
       <div class="entry">
@@ -411,7 +442,7 @@
       </div>
 
       <div class="entry">
-        <h3>Library Assistant II <span style="font-style: italic; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft);">(promoted from Page and Library Assistant I)</span></h3>
+        <h3>Library Assistant II <span class="aside">(promoted from Page and Library Assistant I)</span></h3>
         <div class="meta">North Liberty Community Library, North Liberty, IA &middot; August 2016&ndash;April 2019</div>
         <ul class="cv-list">
           <li>Provided technology troubleshooting, digital literacy training, and cross-disciplinary reference assistance; managed serials acquisitions, copy cataloging, and collection maintenance for magazine, adult nonfiction, and multimedia collections.</li>
@@ -422,7 +453,6 @@
     </section>
 
     <section>
-      <div class="folio"><span>Chapter Four</span><span>Scholarly Work</span></div>
       <h2>Publications &amp; Presentations</h2>
 
       <div class="subhead">Publications</div>
@@ -439,7 +469,6 @@
     </section>
 
     <section>
-      <div class="folio"><span>Chapter Five</span><span>Service</span></div>
       <h2>Service &amp; Affiliations</h2>
 
       <div class="subhead">American Library Association &middot; 2022&ndash;Present</div>
@@ -475,7 +504,6 @@
     </section>
 
     <section>
-      <div class="folio"><span>Chapter Six</span><span>Technology &amp; Languages</span></div>
       <h2>Technology &amp; Languages</h2>
 
       <div class="subhead">Technology</div>

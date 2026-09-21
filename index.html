@@ -79,19 +79,28 @@
     letter-spacing: 0.08em;
   }
 
-  /* ================= BANNER (dust-jacket band) ================= */
+  /* ================= TITLE PAGE (map as ground, title block as cartouche) ================= */
   .titlepage {
-    background: var(--page);
-    padding: 2.6rem 1.5rem;
+    /* the map shows through; a light wash keeps it from competing with the type */
+    background:
+      linear-gradient(rgba(246,239,221,0.28), rgba(246,239,221,0.28)),
+      url("chicago_map.jpg") center 48% / cover no-repeat,
+      var(--page);
+    padding: 3.4rem 1.5rem;
     border-bottom: 1px solid var(--rule);
   }
 
-  .banner {
+  /* the cartouche: a solid page-colored panel that holds the name, role, and quote */
+  .cartouche {
     max-width: 900px;
     margin: 0 auto;
-    border-top: 3px double var(--gold);
-    border-bottom: 3px double var(--gold);
-    padding: 2.4rem 0.5rem;
+    background: rgba(246,239,221,0.95);
+    border: 3px double var(--gold);
+    padding: 2.4rem 2.2rem 2rem;
+    box-shadow: 0 0 0 6px rgba(246,239,221,0.95);
+  }
+
+  .banner {
     display: flex;
     align-items: center;
     gap: 2.4rem;
@@ -312,7 +321,9 @@
   }
 
   @media (max-width: 640px) {
-    .banner { flex-direction: column; text-align: center; padding: 2rem 1.2rem; }
+    .titlepage { padding: 2rem 0.9rem; }
+    .cartouche { padding: 2rem 1.2rem 1.6rem; }
+    .banner { flex-direction: column; text-align: center; }
     .banner-photo { width: 128px; height: 164px; }
   }
 
@@ -324,19 +335,21 @@
 <body>
 
   <header class="titlepage">
-    <div class="banner">
-      <div class="banner-photo">
-        <img src="nessa_headshot.png" alt="Nessa Vahedian Khezerlou">
+    <div class="cartouche">
+      <div class="banner">
+        <div class="banner-photo">
+          <img src="nessa_headshot.png" alt="Nessa Vahedian Khezerlou">
+        </div>
+        <div class="banner-text">
+          <div class="ex-libris">Ex&nbsp;Libris</div>
+          <h1 class="display">Nessa Vahedian Khezerlou</h1>
+          <div class="role">Academic Librarian, Chicagoland</div>
+        </div>
       </div>
-      <div class="banner-text">
-        <div class="ex-libris">Ex&nbsp;Libris</div>
-        <h1 class="display">Nessa Vahedian Khezerlou</h1>
-        <div class="role">Academic Librarian, Chicagoland</div>
+      <div class="titlepage-quote">
+        "To ask why we need libraries at all, when there is so much information available elsewhere, is about as sensible as asking if roadmaps are necessary now that there are so very many roads."
+        <span>— Jon Bing</span>
       </div>
-    </div>
-    <div class="titlepage-quote">
-      "To ask why we need libraries at all, when there is so much information available elsewhere, is about as sensible as asking if roadmaps are necessary now that there are so very many roads."
-      <span>— Jon Bing</span>
     </div>
   </header>
 

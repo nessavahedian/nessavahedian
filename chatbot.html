@@ -35,6 +35,11 @@
 
   a { color: inherit; }
 
+  a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
   .display { font-family: "Playfair Display", serif; }
   .mono {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -59,7 +64,7 @@
     padding: 1rem 0.5rem;
   }
 
-  .titlepage-inner .ex-libris {
+  .titlepage-inner .motto {
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.68rem;
     letter-spacing: 0.28em;
@@ -100,6 +105,7 @@
   .toc-list li a {
     display: flex;
     align-items: baseline;
+    position: relative;
     text-decoration: none;
     padding: 0.5rem 0;
     color: var(--ink-soft);
@@ -122,9 +128,22 @@
 
   .toc-list li a:hover { color: var(--ink); }
 
+  /* current page: title steps in from the margin and a gold star marks the spot */
   .toc-list li a.current {
     color: var(--ink);
     font-weight: 700;
+    padding-left: 1.7rem;
+  }
+
+  .toc-list li a.current::before {
+    content: "\2726";
+    position: absolute;
+    left: 0.35rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gold);
   }
 
   .toc-list li a.current .leader { border-bottom-color: var(--gold); }
@@ -238,7 +257,7 @@
 
   <header class="titlepage">
     <div class="titlepage-inner">
-      <div class="ex-libris">Ex&nbsp;Libris</div>
+      <div class="motto" lang="la" title="Dare to know">Sapere aude</div>
       <div class="name display">Nessa Vahedian Khezerlou</div>
     </div>
   </header>
@@ -250,7 +269,7 @@
         <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
         <li><a href="cv.html">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
         <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
-        <li><a class="current" href="chadbaht.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
+        <li><a class="current" href="chatbot.html" aria-current="page">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
       </ul>
     </div>
   </nav>
@@ -261,7 +280,7 @@
       <h2>Behind the Chatbot</h2>
       <p class="drop-cap">Say hello to my little friend, Chad Baht. He explains, in a back-and-forth dialog, how he actually works. Instead of reading about tokenization, training data, or hallucination secondhand, Chad Baht walks students through his mechanics step by step.</p>
       <p>For more on the pedagogy behind Chad Baht — and the rest of the project — visit the <a href="portfolio.html">Portfolio</a> page.</p>
-       <p>Please note: chat transcripts are recorded.</p>
+      <p>Please note: chat transcripts are recorded.</p>
     </section>
 
     <section>

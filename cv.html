@@ -23,3 +23,354 @@
   <meta property="og:url" content="https://nessavahedian.net/cv.html" />
   <meta property="og:title" content="Curriculum Vitae | Nessa Vahedian" />
   <meta property="og:description" content="Curriculum Vitae and professional experience for Nessa Vahedian Khezerlou." />
+  <meta property="og:image" content="https://nessavahedian.net/assets/preview-image.png" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://nessavahedian.net/cv.html" />
+  <meta name="twitter:title" content="Curriculum Vitae | Nessa Vahedian" />
+  <meta name="twitter:description" content="Curriculum Vitae and professional experience for Nessa Vahedian Khezerlou." />
+  <meta name="twitter:image" content="https://nessavahedian.net/assets/preview-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nessa Vahedian Khezerlou",
+    "url": "https://nessavahedian.net",
+    "sameAs": [
+      "https://www.linkedin.com/in/nessavahedian/"
+    ],
+    "jobTitle": "Librarian & Educator",
+    "knowsAbout": ["Information Literacy", "Instructional Design", "AI Literacy"]
+  }
+  </script>
+
+  <script data-goatcounter="https://nessavahedian.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <!-- Import required fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ================= CSS VARIABLES & RESETS ================= */
+    :root {
+      --page:       #f6efdd;   /* book page */
+      --page-2:     #f0e7cf;   /* slightly deeper page tone for footer */
+      --ink:        #2c2415;   /* aged ink */
+      --ink-soft:   #6b5f47;
+      --gold:       #a97b2d;   /* foil */
+      --gold-lt:    #c99a4c;
+      --rule:       #ddcda3;
+
+      --oxblood:    #6d2027;
+      --forest:     #2e4a3b;
+      --navy:       #1e2c47;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+
+    body {
+      background: var(--page-2);
+      color: var(--ink);
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .display { font-family: "Playfair Display", serif; }
+    .mono {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      letter-spacing: 0.08em;
+    }
+
+    /* ================= TOP BAR ================= */
+    .topbar {
+      background: var(--page);
+      padding: 1.3rem 1.8rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .topbar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: right;
+    }
+
+    .topbar-inner .motto {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .topbar-inner .name {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    @media (max-width: 560px) {
+      .topbar-inner { text-align: center; }
+    }
+
+    /* ================= TABLE OF CONTENTS NAV ================= */
+    .toc {
+      background: var(--page-2);
+      padding: 1.8rem 1.5rem 2rem;
+    }
+
+    .toc-inner {
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .toc-heading {
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .toc-list { list-style: none; margin: 0; padding: 0; }
+
+    .toc-list li a {
+      display: flex;
+      align-items: baseline;
+      position: relative;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      color: var(--ink-soft);
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+    }
+
+    .toc-list li a .leader {
+      flex: 1;
+      border-bottom: 1px dotted var(--ink-soft);
+      margin: 0 0.5rem;
+      position: relative;
+      top: -0.3rem;
+    }
+
+    .toc-list li a .num {
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .toc-list li a:hover { color: var(--ink); }
+
+    /* current page: title steps in from the margin and a gold star marks the spot */
+    .toc-list li a.current {
+      color: var(--ink);
+      font-weight: 700;
+      padding-left: 1.7rem;
+    }
+
+    .toc-list li a.current::before {
+      content: "\2726";
+      position: absolute;
+      left: 0.35rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .toc-list li a.current .leader { border-bottom-color: var(--gold); }
+    .toc-list li a.current .num { color: var(--gold); }
+
+    /* ================= PAGE CONTENT ================= */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--page);
+      padding: 3.4rem 2.4rem 1rem;
+    }
+
+    .folio {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    /* sections separated by a plain rule */
+    section + section {
+      margin-top: 3rem;
+      padding-top: 2.6rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    section h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin: 0 0 1.2rem;
+      color: var(--ink);
+    }
+
+    .drop-cap::first-letter {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 3.6rem;
+      line-height: 0.78;
+      float: left;
+      padding: 0.06em 0.09em 0 0;
+      color: var(--gold);
+    }
+
+    section p { margin: 0 0 1.15rem; }
+
+    /* ================= CV-SPECIFIC ENTRIES ================= */
+    .entry { margin-bottom: 2.2rem; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 0 0.15rem;
+      color: var(--ink);
+    }
+
+    .entry h3 .aside {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--ink-soft);
+    }
+
+    .entry .meta {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.7rem;
+    }
+
+    .cv-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cv-list li {
+      position: relative;
+      padding-left: 1.15em;
+      margin-bottom: 0.65rem;
+    }
+
+    .cv-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .subhead {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 1.6rem 0 0.9rem;
+    }
+
+    .subhead:first-of-type { margin-top: 0; }
+
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--page);
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      padding: 2.2rem 1.5rem 3rem;
+    }
+
+    @media (max-width: 560px) {
+      main { padding: 2.6rem 1.4rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="motto" lang="la" title="Dare to know">Sapere aude</span>
+      <span class="name">Nessa Vahedian Khezerlou</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Site navigation">
+    <div class="toc-inner">
+      <div class="toc-heading">Contents</div>
+      <ul class="toc-list">
+        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
+        <li><a class="current" href="cv.html" aria-current="page">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
+        <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
+        <li><a href="chatbot.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <section>
+      <div class="folio"><span>Chapter Two</span><span>Curriculum Vitae</span></div>
+      <h2>Education</h2>
+
+      <div class="entry">
+        <h3>Master of Science in Education, Instructional Technology</h3>
+        <div class="meta">Northern Illinois University &middot; Expected 2028</div>
+      </div>
+
+      <div class="entry">
+        <h3>Master of Library and Information Science</h3>
+        <div class="meta">University of Wisconsin&ndash;Madison &middot; 2022 &middot; Cumulative GPA: 3.9</div>
+        <p>Relevant coursework: AI &amp; Machine Learning Ethics; Introduction to Information Architecture; Code and Power; Information Services Management; Information: Organization and Search; Research and Assessment; Information Ethics and Policy; Reading Interests of Adults; Metadata Standards and XML.</p>
+      </div>
+
+      <div class="entry">
+        <h3>Bachelor of Liberal Studies</h3>
+        <div class="meta">University of Iowa &middot; 2016</div>
+        <p>Relevant coursework: Grant Writing. Post-baccalaureate coursework: Detecting and Refuting False Information (SLIS 6411).</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Professional Experience</h2>
+
+      <div class="entry">
+        <h3>Adjunct Reference &amp; Instruction Librarian</h3>
+        <div class="meta">Joliet Junior College, Joliet, IL &middot; September 2023&ndash;Present</div>
+        <ul class="cv-list">
+          <li>Design and deliver 10&ndash;25 course-integrated information literacy sessions per semester for diverse populations (first-year, dual credit, ELL/multilingual, Honors, STEM, speech), contextualizing research within the history and economics of information systems and building instruction from students' existing cultural and community knowledge to affirm underrepresented learners.</li>
+          <li>Built a recurring three-session scaffolded English information literacy sequence from an initial faculty collaboration, and developed a dedicated dual credit curriculum serving 120+ high school students annually, aligned with college-level standards.</li>
+          <li>Developed an AI literacy curriculum, including a flipped lesson using self-designed prompt-based activities to teach LLM fundamentals (next-word prediction, vector-space word embeddings, attention mechanisms) and the "black box" problem; led critical discussions on AI ethics (data-scraping labor, training bias, RLHF trade-offs) and how AI's design toward "pleasing" users can foster misinformation.</li>
+          <li>Provide calm, supportive 1:1 coaching and research consultations, including for Honors capstone projects, helping students troubleshoot AI-related research

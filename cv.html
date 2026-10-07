@@ -48,301 +48,400 @@
 
   <script data-goatcounter="https://nessavahedian.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Self-hosted fonts: upload the fonts folder next to this file.
+     Market Deco sets your name; Breamcatcher sets the headings, route stops, and drop cap. */
+  @font-face {
+    font-family: "Market Deco";
+    src: url("fonts/market-deco.woff2") format("woff2"),
+         url("fonts/market-deco.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Breamcatcher";
+    src: url("fonts/breamcatcher.woff2") format("woff2"),
+         url("fonts/breamcatcher.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --night:     #11161c;   /* station at night */
+    --night-2:   #182029;   /* panel */
+    --night-3:   #212b36;   /* raised panel */
+    --cream:     #e8dec7;   /* lamplit paper */
+    --cream-soft:#aea38b;
+    --brass:     #c39a58;   /* fittings */
+    --brass-lt:  #e0bd7e;
+    --rule:      rgba(195,154,88,0.28);
 
-  <!-- Import required fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <style>
-    /* ================= CSS VARIABLES & RESETS ================= */
-    :root {
-      --page:       #f6efdd;   /* book page */
-      --page-2:     #f0e7cf;   /* slightly deeper page tone for footer */
-      --ink:        #2c2415;   /* aged ink */
-      --ink-soft:   #6b5f47;
-      --gold:       #a97b2d;   /* foil */
-      --gold-lt:    #c99a4c;
-      --rule:       #ddcda3;
+    --oxblood:   #7a2a30;
+    --forest:    #2f5444;
+  }
 
-      --oxblood:    #6d2027;
-      --forest:     #2e4a3b;
-      --navy:       #1e2c47;
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body {
+    background: var(--night);
+    color: var(--cream);
+    font-family: "Lora", Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible {
+    outline: 2px solid var(--brass-lt);
+    outline-offset: 3px;
+  }
+
+  .display { font-family: "Market Deco", Georgia, serif; }
+  .sign {
+    font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+  }
+
+  /* ================= STATION SIGN (slim header for interior pages) ================= */
+  .station-sign {
+    background: var(--night);
+    padding: 1.6rem 1.5rem 0.4rem;
+  }
+
+  .station-sign-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--night-2);
+    border: 1px solid var(--brass);
+    outline: 1px solid var(--rule);
+    outline-offset: 5px;
+    padding: 1rem 1.8rem;
+  }
+
+  /* brass rivets at the four corners */
+  .station-sign-inner::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    pointer-events: none;
+    background:
+      radial-gradient(circle, var(--brass) 0 2px, transparent 2.5px) top left    / 8px 8px no-repeat,
+      radial-gradient(circle, var(--brass) 0 2px, transparent 2.5px) top right   / 8px 8px no-repeat,
+      radial-gradient(circle, var(--brass) 0 2px, transparent 2.5px) bottom left / 8px 8px no-repeat,
+      radial-gradient(circle, var(--brass) 0 2px, transparent 2.5px) bottom right/ 8px 8px no-repeat;
+  }
+
+  .station-sign .motto {
+    font-size: 0.7rem;
+    color: var(--brass);
+  }
+
+  .station-sign .name {
+    font-size: 1.5rem;
+    line-height: 1.15;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  /* ================= ROUTE NAV (a transit line with four stops) ================= */
+  .route {
+    background: var(--night);
+    padding: 2.2rem 1.5rem 2.6rem;
+  }
+
+  .route-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .route-heading {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--brass);
+    margin-bottom: 1.4rem;
+  }
+
+  .route-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+
+  /* the track, running from the first stop to the last */
+  .route-list::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 4px;
+    background: var(--oxblood);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .route-list li { position: relative; text-align: center; }
+
+  .route-list a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--cream-soft);
+  }
+
+  .route-list .stop {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--night);
+    border: 4px solid var(--cream-soft);
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.2s ease;
+  }
+
+  .route-list .label {
+    font-family: "Breamcatcher", Georgia, serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .route-list .num {
+    display: block;
+    font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-top: 0.2rem;
+  }
+
+  .route-list a:hover { color: var(--cream); }
+  .route-list a:hover .stop { border-color: var(--brass-lt); }
+
+  /* you are here: the stop lights up in brass */
+  .route-list a.current { color: var(--cream); }
+
+  .route-list a.current .stop {
+    background: var(--brass-lt);
+    border-color: var(--brass);
+    box-shadow: 0 0 0 4px var(--night), 0 0 0 5px var(--brass), 0 0 14px rgba(224,189,126,0.5);
+  }
+
+  /* ================= PAGE CONTENT ================= */
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--night-2);
+    border-top: 3px double var(--brass);
+    padding: 3.6rem 2.6rem 1.2rem;
+  }
+
+  .folio {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.68rem;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+
+  /* sections are separated by a short length of track: two brass rails over wooden ties */
+  .track {
+    height: 16px;
+    margin: 3.2rem 0;
+    background:
+      linear-gradient(var(--brass), var(--brass)) 0 3px / 100% 2px no-repeat,
+      linear-gradient(var(--brass), var(--brass)) 0 11px / 100% 2px no-repeat,
+      repeating-linear-gradient(90deg, #4a3a28 0 6px, transparent 6px 22px) 0 0 / 100% 16px no-repeat;
+    opacity: 0.75;
+  }
+
+  section h2 {
+    font-family: "Breamcatcher", Georgia, serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.1;
+    margin: 0 0 1.3rem;
+    color: var(--cream);
+  }
+
+  .drop-cap::first-letter {
+    font-family: "Breamcatcher", Georgia, serif;
+    font-weight: 400;
+    font-size: 4.2rem;
+    line-height: 0.75;
+    float: left;
+    padding: 0.08em 0.1em 0 0;
+    color: var(--brass-lt);
+  }
+
+  section p { margin: 0 0 1.15rem; }
+
+  /* in-text links: gold with an underline */
+  section p a {
+    color: var(--brass-lt);
+    text-decoration: underline;
+    text-decoration-color: var(--brass);
+    text-underline-offset: 3px;
+  }
+
+  section p a:hover { color: var(--cream); }
+
+  footer {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    background: var(--night-2);
+    text-align: center;
+    font-size: 0.66rem;
+    color: var(--cream-soft);
+    padding: 2.4rem 1.5rem 2.8rem;
+  }
+
+  footer .all-aboard {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--brass);
+    letter-spacing: 0.4em;
+  }
+
+  /* sections separated by a dashed rail rule */
+  section + section {
+    margin-top: 3rem;
+    padding-top: 2.6rem;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* ================= CV-SPECIFIC ENTRIES ================= */
+  .entry { margin-bottom: 2.2rem; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry h3 {
+    font-family: "Lora", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin: 0 0 0.2rem;
+    color: var(--cream);
+  }
+
+  .entry h3 .aside {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.98rem;
+    color: var(--cream-soft);
+  }
+
+  .entry .meta {
+    font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.8rem;
+  }
+
+  .entry p { color: var(--cream-soft); font-size: 1rem; }
+
+  .cv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cv-list li {
+    position: relative;
+    padding-left: 1.15em;
+    margin-bottom: 0.65rem;
+    font-size: 1rem;
+  }
+
+  .cv-list li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+  }
+
+  .subhead {
+    font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 1.6rem 0 0.9rem;
+  }
+
+  .subhead:first-of-type { margin-top: 0; }
+
+  @media (max-width: 640px) {
+    .station-sign-inner { flex-direction: column; text-align: center; gap: 0.35rem; padding: 1rem 1.2rem; }
+
+    /* the line turns vertical on small screens */
+    .route-inner { max-width: 300px; }
+    .route-list { grid-template-columns: 1fr; gap: 1.1rem; }
+    .route-list::before {
+      top: 11px; bottom: 11px;
+      left: 9px; right: auto;
+      width: 4px; height: auto;
     }
+    .route-list li { text-align: left; }
+    .route-list a { flex-direction: row; gap: 1rem; }
+    .route-list .num { display: inline; margin: 0 0 0 0.5rem; }
+  }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; }
-
-    body {
-      background: var(--page-2);
-      color: var(--ink);
-      font-family: "EB Garamond", Georgia, serif;
-      font-size: 1.15rem;
-      line-height: 1.7;
-    }
-
-    a { color: inherit; }
-
-    a:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 3px;
-    }
-
-    .display { font-family: "Playfair Display", serif; }
-    .mono {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      letter-spacing: 0.08em;
-    }
-
-    /* ================= TOP BAR ================= */
-    .topbar {
-      background: var(--page);
-      padding: 1.3rem 1.8rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .topbar-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: right;
-    }
-
-    .topbar-inner .motto {
-      display: block;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.25rem;
-    }
-
-    .topbar-inner .name {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--ink);
-    }
-
-    @media (max-width: 560px) {
-      .topbar-inner { text-align: center; }
-    }
-
-    /* ================= TABLE OF CONTENTS NAV ================= */
-    .toc {
-      background: var(--page-2);
-      padding: 1.8rem 1.5rem 2rem;
-    }
-
-    .toc-inner {
-      max-width: 460px;
-      margin: 0 auto;
-    }
-
-    .toc-heading {
-      text-align: center;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .toc-list { list-style: none; margin: 0; padding: 0; }
-
-    .toc-list li a {
-      display: flex;
-      align-items: baseline;
-      position: relative;
-      text-decoration: none;
-      padding: 0.5rem 0;
-      color: var(--ink-soft);
-      font-family: "Playfair Display", serif;
-      font-size: 1.05rem;
-    }
-
-    .toc-list li a .leader {
-      flex: 1;
-      border-bottom: 1px dotted var(--ink-soft);
-      margin: 0 0.5rem;
-      position: relative;
-      top: -0.3rem;
-    }
-
-    .toc-list li a .num {
-      font-style: italic;
-      font-size: 0.95rem;
-    }
-
-    .toc-list li a:hover { color: var(--ink); }
-
-    /* current page: title steps in from the margin and a gold star marks the spot */
-    .toc-list li a.current {
-      color: var(--ink);
-      font-weight: 700;
-      padding-left: 1.7rem;
-    }
-
-    .toc-list li a.current::before {
-      content: "\2726";
-      position: absolute;
-      left: 0.35rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--gold);
-    }
-
-    .toc-list li a.current .leader { border-bottom-color: var(--gold); }
-    .toc-list li a.current .num { color: var(--gold); }
-
-    /* ================= PAGE CONTENT ================= */
-    main {
-      max-width: 680px;
-      margin: 0 auto;
-      background: var(--page);
-      padding: 3.4rem 2.4rem 1rem;
-    }
-
-    .folio {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.6rem;
-    }
-
-    /* sections separated by a plain rule */
-    section + section {
-      margin-top: 3rem;
-      padding-top: 2.6rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    section h2 {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 1.6rem;
-      margin: 0 0 1.2rem;
-      color: var(--ink);
-    }
-
-    .drop-cap::first-letter {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 3.6rem;
-      line-height: 0.78;
-      float: left;
-      padding: 0.06em 0.09em 0 0;
-      color: var(--gold);
-    }
-
-    section p { margin: 0 0 1.15rem; }
-
-    /* ================= CV-SPECIFIC ENTRIES ================= */
-    .entry { margin-bottom: 2.2rem; }
-    .entry:last-child { margin-bottom: 0; }
-
-    .entry h3 {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin: 0 0 0.15rem;
-      color: var(--ink);
-    }
-
-    .entry h3 .aside {
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1rem;
-      color: var(--ink-soft);
-    }
-
-    .entry .meta {
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--ink-soft);
-      margin-bottom: 0.7rem;
-    }
-
-    .cv-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .cv-list li {
-      position: relative;
-      padding-left: 1.15em;
-      margin-bottom: 0.65rem;
-    }
-
-    .cv-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-    }
-
-    .subhead {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 1.6rem 0 0.9rem;
-    }
-
-    .subhead:first-of-type { margin-top: 0; }
-
-    footer {
-      max-width: 680px;
-      margin: 0 auto;
-      background: var(--page);
-      text-align: center;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-      padding: 2.2rem 1.5rem 3rem;
-    }
-
-    @media (max-width: 560px) {
-      main { padding: 2.6rem 1.4rem 1rem; }
-    }
-  </style>
+  @media (max-width: 560px) {
+    main { padding: 2.8rem 1.4rem 1rem; }
+    footer { margin-bottom: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <span class="motto" lang="la" title="Dare to know">Sapere aude</span>
-      <span class="name">Nessa Vahedian Khezerlou</span>
+  <header class="station-sign">
+    <div class="station-sign-inner">
+      <span class="motto sign" lang="la" title="Dare to know">Sapere aude</span>
+      <a class="name display" href="index.html">Nessa Vahedian Khezerlou</a>
     </div>
   </header>
 
-  <nav class="toc" aria-label="Site navigation">
-    <div class="toc-inner">
-      <div class="toc-heading">Contents</div>
-      <ul class="toc-list">
-        <li><a href="index.html">Home<span class="leader"></span><span class="num">i</span></a></li>
-        <li><a class="current" href="cv.html" aria-current="page">Curriculum Vitae<span class="leader"></span><span class="num">ii</span></a></li>
-        <li><a href="portfolio.html">Portfolio<span class="leader"></span><span class="num">iii</span></a></li>
-        <li><a href="chatbot.html">Behind the Chatbot<span class="leader"></span><span class="num">iv</span></a></li>
-      </ul>
+  <nav class="route" aria-label="Site navigation">
+    <div class="route-inner">
+      <div class="route-heading sign">Route &middot; All Stops</div>
+      <ol class="route-list">
+        <li><a href="index.html"><span class="stop"></span><span class="label">Home<span class="num">i</span></span></a></li>
+        <li><a class="current" href="cv.html" aria-current="page"><span class="stop"></span><span class="label">Curriculum Vitae<span class="num">ii</span></span></a></li>
+        <li><a href="portfolio.html"><span class="stop"></span><span class="label">Portfolio<span class="num">iii</span></span></a></li>
+        <li><a href="chatbot.html"><span class="stop"></span><span class="label">Behind the Chatbot<span class="num">iv</span></span></a></li>
+      </ol>
     </div>
   </nav>
 
   <main>
 
     <section>
-      <div class="folio"><span>Chapter Two</span><span>Curriculum Vitae</span></div>
+      <div class="folio sign"><span>Stop ii</span><span>Curriculum Vitae</span></div>
       <h2>Education</h2>
 
       <div class="entry">
@@ -373,4 +472,22 @@
           <li>Design and deliver 10&ndash;25 course-integrated information literacy sessions per semester for diverse populations (first-year, dual credit, ELL/multilingual, Honors, STEM, speech), contextualizing research within the history and economics of information systems and building instruction from students' existing cultural and community knowledge to affirm underrepresented learners.</li>
           <li>Built a recurring three-session scaffolded English information literacy sequence from an initial faculty collaboration, and developed a dedicated dual credit curriculum serving 120+ high school students annually, aligned with college-level standards.</li>
           <li>Developed an AI literacy curriculum, including a flipped lesson using self-designed prompt-based activities to teach LLM fundamentals (next-word prediction, vector-space word embeddings, attention mechanisms) and the "black box" problem; led critical discussions on AI ethics (data-scraping labor, training bias, RLHF trade-offs) and how AI's design toward "pleasing" users can foster misinformation.</li>
-          <li>Provide calm, supportive 1:1 coaching and research consultations, including for Honors capstone projects, helping students troubleshoot AI-related research
+          <!-- ============================================================
+               THE REST OF YOUR CV GOES HERE.
+               The copy of cv.html I received stopped partway through this
+               Joliet Junior College entry. Paste the remainder of your CV
+               content from your current cv.html in this spot, starting with
+               the bullet that begins "Provide calm, supportive 1:1 coaching".
+               Keep the same class names (entry, meta, cv-list, subhead) and
+               it will pick up the new styling automatically.
+               ============================================================ -->
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="sign">Issued to Nessa Vahedian Khezerlou &middot; MMXXVI<span class="all-aboard">&#10022; All Aboard &#10022;</span></footer>
+
+</body>
+</html>

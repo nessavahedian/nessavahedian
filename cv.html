@@ -395,6 +395,44 @@
 
   .subhead:first-of-type { margin-top: 0; }
 
+  /* links inside CV entries */
+  .cv-list a, .cv-num a {
+    color: var(--brass-lt);
+    text-decoration: underline;
+    text-decoration-color: var(--brass);
+    text-underline-offset: 3px;
+  }
+  .cv-list a:hover, .cv-num a:hover { color: var(--cream); }
+
+  /* numbered lists for publications and presentations */
+  .cv-num {
+    list-style: none;
+    counter-reset: cvnum;
+    margin: 0 0 0.4rem;
+    padding: 0;
+  }
+
+  .cv-num li {
+    counter-increment: cvnum;
+    position: relative;
+    padding-left: 2.2em;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .cv-num li::before {
+    content: counter(cvnum) ".";
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    font-family: "Jost", "Futura", "Century Gothic", sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--brass);
+  }
+
+  section > p { font-size: 1rem; }
+
   @media (max-width: 640px) {
     .station-sign-inner { flex-direction: column; text-align: center; gap: 0.35rem; padding: 1rem 1.2rem; }
 
@@ -445,44 +483,205 @@
       <h2>Education</h2>
 
       <div class="entry">
-        <h3>Master of Science in Education, Instructional Technology</h3>
-        <div class="meta">Northern Illinois University &middot; Expected 2028</div>
+        <h3>Master of Science in Education (M.S. Ed.), Instructional Technology</h3>
+        <div class="meta">Northern Illinois University, DeKalb, IL &middot; Expected 2028</div>
       </div>
 
       <div class="entry">
-        <h3>Master of Library and Information Science</h3>
-        <div class="meta">University of Wisconsin&ndash;Madison &middot; 2022 &middot; Cumulative GPA: 3.9</div>
-        <p>Relevant coursework: AI &amp; Machine Learning Ethics; Introduction to Information Architecture; Code and Power; Information Services Management; Information: Organization and Search; Research and Assessment; Information Ethics and Policy; Reading Interests of Adults; Metadata Standards and XML.</p>
+        <h3>Master of Library and Information Science (MLIS)</h3>
+        <div class="meta">University of Wisconsin–Madison, WI &middot; 2022</div>
+        <p>Selected coursework: Information Services Management; Information: Organization and Search; Research and Assessment; Reading Interests of Adults; Metadata Standards and XML</p>
       </div>
 
       <div class="entry">
-        <h3>Bachelor of Liberal Studies</h3>
-        <div class="meta">University of Iowa &middot; 2016</div>
-        <p>Relevant coursework: Grant Writing. Post-baccalaureate coursework: Detecting and Refuting False Information (SLIS 6411).</p>
+        <h3>Bachelor of Liberal Studies (BLS)</h3>
+        <div class="meta">University of Iowa, Iowa City, IA &middot; 2016</div>
+        <p>Coursework in Spanish, linguistics, and global literatures, including Creative Writing in Spanish, Spanish American Short Story, Sociolinguistics, and Introduction to Linguistics</p>
+        <p>Post-baccalaureate coursework: SLIS 6411, Detecting and Refuting False Information</p>
       </div>
+
     </section>
 
     <section>
-      <h2>Professional Experience</h2>
+      <h2>Library Experience</h2>
 
       <div class="entry">
         <h3>Adjunct Reference &amp; Instruction Librarian</h3>
-        <div class="meta">Joliet Junior College, Joliet, IL &middot; September 2023&ndash;Present</div>
+        <div class="meta">Joliet Junior College, Joliet, IL &middot; September 2023–Present</div>
         <ul class="cv-list">
-          <li>Design and deliver 10&ndash;25 course-integrated information literacy sessions per semester for diverse populations (first-year, dual credit, ELL/multilingual, Honors, STEM, speech), contextualizing research within the history and economics of information systems and building instruction from students' existing cultural and community knowledge to affirm underrepresented learners.</li>
-          <li>Built a recurring three-session scaffolded English information literacy sequence from an initial faculty collaboration, and developed a dedicated dual credit curriculum serving 120+ high school students annually, aligned with college-level standards.</li>
-          <li>Developed an AI literacy curriculum, including a flipped lesson using self-designed prompt-based activities to teach LLM fundamentals (next-word prediction, vector-space word embeddings, attention mechanisms) and the "black box" problem; led critical discussions on AI ethics (data-scraping labor, training bias, RLHF trade-offs) and how AI's design toward "pleasing" users can foster misinformation.</li>
-          <!-- ============================================================
-               THE REST OF YOUR CV GOES HERE.
-               The copy of cv.html I received stopped partway through this
-               Joliet Junior College entry. Paste the remainder of your CV
-               content from your current cv.html in this spot, starting with
-               the bullet that begins "Provide calm, supportive 1:1 coaching".
-               Keep the same class names (entry, meta, cv-list, subhead) and
-               it will pick up the new styling automatically.
-               ============================================================ -->
+          <li>Teach 10–25 course-integrated information literacy sessions per semester across first-year, multilingual/ELL, dual credit, Honors, and STEM courses</li>
+          <li>Built a recurring three-session sequence with English faculty, moving from source evaluation and lateral reading to AI literacy and database research</li>
+          <li>Designed a flipped AI literacy lesson, later presented at ACRL DOLS and the Illinois Library Association</li>
+          <li>Develop dual credit information literacy curriculum serving 120+ students annually; trained 40+ partner high school instructors</li>
+          <li>Create asynchronous tutorials and modules in Niche Academy and LibGuides, including the library's second most-used learning object</li>
+          <li>Provide reference via desk, chat, and virtual consultation (up to 25 desk and 5–10 chat hours weekly), including Honors capstone support</li>
+          <li>Manage a $2,000 semesterly acquisitions budget and weed the C and G classes using Alma data and Choice reviews; supported the Dewey-to-LC reclassification.</li>
+          <li>Plan outreach programming, including Banned Books Week and National Library Week, with campus and community partners</li>
+          <li>Led a data-driven redesign of the library website and LibGuides (10+ pages), establishing content governance workflows and WCAG accessibility review</li>
         </ul>
       </div>
+
+      <div class="entry">
+        <h3>Adjunct Librarian</h3>
+        <div class="meta">College of DuPage, Glen Ellyn, IL &middot; November 2025–Present</div>
+        <ul class="cv-list">
+          <li>Provide reference and research consultations in person and virtually several times weekly, across disciplines including STEM</li>
+          <li>Teach active-learning information literacy sessions for composition courses</li>
+          <li>Collaborate with faculty to adopt and create Open Educational Resources</li>
+          <li>Designed "Summer Fling Book Matchmaking," a gamified display promoting collection discovery and teaching LC call numbers</li>
+          <li>Invited judge for the annual student research symposium</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Earlier Library Experience</h2>
+
+      <div class="entry">
+        <h3>Librarian</h3>
+        <div class="meta">Waubonsee Community College, Sugar Grove, IL &middot; February 2023–September 2023</div>
+        <ul class="cv-list">
+          <li>Taught information literacy sessions and designed the library component of New Student Orientation for cohorts of 150+</li>
+          <li>Weeded and selected materials using usage data; drafted updates to the collection development policy</li>
+          <li>Provided research consultations for students and faculty across disciplines</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Information Services Librarian</h3>
+        <div class="meta">Aurora University, Aurora, IL &middot; August 2022–February 2023</div>
+        <ul class="cv-list">
+          <li>Provided research consultations for graduate and doctoral students in nursing, social work, and education</li>
+          <li>Co-developed course-integrated workshops and created LibGuides</li>
+          <li>Supervised and trained student employees</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Graduate Practicum Student</h3>
+        <div class="meta">Northern Illinois University Libraries, DeKalb, IL &middot; April 2022–August 2022</div>
+        <ul class="cv-list">
+          <li>Scripted and recorded video tutorials, supported a collection diversity audit, and built a LibGuide for students with disabilities</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Research Assistant</h3>
+        <div class="meta">University of Iowa O'Brien Eye Library, Iowa City, IA &middot; April 2019–August 2019</div>
+        <ul class="cv-list">
+          <li>Conducted searches in PubMed, MEDLINE, and Scopus and produced literature reviews and annotated bibliographies supporting faculty publications and grant submissions</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Library Assistant II (promoted from Page and Library Assistant I)</h3>
+        <div class="meta">North Liberty Community Library, North Liberty, IA &middot; August 2016–April 2019</div>
+        <ul class="cv-list">
+          <li>Managed serials acquisitions, copy cataloging, and collection maintenance for magazines, adult nonfiction, and DVDs</li>
+          <li>Supervised evening and weekend operations; launched an Emerging Adults book club</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Relevant Experience</h2>
+
+      <div class="entry">
+        <h3>Contributor, AI Model Evaluation</h3>
+        <div class="meta">Outlier (Remote) &middot; March 2024–2026</div>
+        <ul class="cv-list">
+          <li>Evaluate large language model outputs for accuracy and reasoning across technical, scientific, and humanities content</li>
+          <li>Fact-check responses against authoritative sources and document hallucinated citations, bias, and logic failures</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Academic Support Specialist</h3>
+        <div class="meta">Madison Area Technical College, Madison, WI &middot; July 2020–August 2021</div>
+        <ul class="cv-list">
+          <li>Co-developed and facilitated technology workshops supporting underserved students in remote learning</li>
+          <li>Produced a campus-wide newsletter reaching 5,000+ recipients</li>
+          <li>Served on the Academic Content and Technology Committee addressing web accessibility and digital equity</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Program Specialist II (promoted from Temporary Associate and Program Specialist I)</h3>
+        <div class="meta">ACT, Iowa City, IA &middot; October 2016–April 2019</div>
+        <ul class="cv-list">
+          <li>Built a tracking database connecting home-school and under-resourced test-takers with credentialed proctors for testing accommodations</li>
+          <li>Developed a OneNote knowledge base standardizing procedures and training for 20–30 specialists</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Selected Instructional Materials</h2>
+
+      <ul class="cv-list">
+        <li><a href="https://sandbox.acrl.org/resources/updated-92026-behind-chatbot-interactive-ai-mechanics" target="_blank" rel="noopener"><em>Behind the Chatbot: Interactive AI Mechanics.</em></a> Lesson plan and structured chatbot dialog.</li>
+        <li><a href="https://my.nicheacademy.com/jjc/course/86782" target="_blank" rel="noopener"><em>JJC Library Online Orientation.</em></a> Asynchronous Niche Academy module.</li>
+        <li><a href="https://library.jjc.edu/openaccess" target="_blank" rel="noopener"><em>Transitional English Instructor Guide.</em></a> LibGuide for dual credit partner instructors.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Scholarly Work</h2>
+
+      <div class="subhead">Book Chapters</div>
+      <ol class="cv-num">
+        <li>Chellino, Amy, and Nessa Vahedian Khezerlou. &ldquo;Two Truths and a Lie: Evaluating the Evidence.&rdquo; In <em>The Practical Literacies Cookbook</em>, edited by Haley Lott. Chicago: American Library Association, forthcoming.</li>
+      </ol>
+      <div class="subhead">Invited Presentations</div>
+      <ol class="cv-num">
+        <li>Vahedian Khezerlou, Nessa. &ldquo;Banned Books.&rdquo; American Association of University Women (AAUW), Downers Grove, IL, November 2026.</li>
+      </ol>
+      <div class="subhead">Conference Presentations</div>
+      <ol class="cv-num">
+        <li>Vahedian Khezerlou, Nessa, and Jessica Clanton. &ldquo;This Presentation Is Banned: Resistance-Themed Engagement with the ACRL Information Literacy Framework for Banned Books Week.&rdquo; Illinois Information Literacy Summit, Glen Ellyn, IL, May 1, 2026.</li>
+      </ol>
+      <div class="subhead">Posters</div>
+      <ol class="cv-num">
+        <li>Vahedian Khezerlou, Nessa. &ldquo;Behind the Chatbot: An Interactive Approach to AI Literacy.&rdquo; Illinois Library Association Annual Conference, October 8, 2026.</li>
+        <li>Vahedian Khezerlou, Nessa. &ldquo;Behind the Chatbot: An AI Literacy Flipped Class.&rdquo; ACRL Distance and Online Learning Section Poster Session, virtual, June 2026.</li>
+      </ol>
+      <div class="subhead">Reviews</div>
+      <ul class="cv-list">
+        <li>Audiobook reviewer, <em>Library Journal</em>, 2023&ndash;present (12 reviews).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Service</h2>
+
+      <div class="subhead">National</div>
+      <ul class="cv-list">
+        <li>Member-at-Large (incoming), Board, ALA Library Instruction Round Table, 2027–</li>
+        <li>Chair, Membership, Promotion, Diversity, and Recruitment Committee, ALA New Members Round Table, 2026–2027</li>
+        <li>Member, Communications Committee, ALA Library Instruction Round Table, 2025–2026</li>
+        <li>Member, Endnotes Committee (publication peer review), ALA New Members Round Table, 2023–2025</li>
+        <li>Member, Academic Library Services to International Students Interest Group, ACRL, 2022–Present</li>
+        <li>Member, Annual Conference Local Information Committee, ALA New Members Round Table, 2022</li>
+      </ul>
+      <div class="subhead">State</div>
+      <ul class="cv-list">
+        <li>Member, Awards Committee, Illinois Library Association, 2023–2026</li>
+      </ul>
+      <div class="subhead">Institutional</div>
+      <ul class="cv-list">
+        <li>Adjunct Union Representative (elected), Joliet Junior College, 2024–Present; researched peer contracts and presented to leadership to secure union representation for adjunct librarians</li>
+        <li>Member, AI Literacy Committee, College of DuPage, 2025–Present</li>
+        <li>Member, Community Engagement Committee, College of DuPage, 2025–Present</li>
+        <li>Member, LGBTQIA+ Employee Resource Group, Joliet Junior College, 2023–Present</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <p>Spanish: intermediate reading and writing proficiency</p>
     </section>
 
   </main>
